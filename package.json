@@ -16,10 +16,49 @@
       {
         "command": "pq-extractor.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "pq-extractor.export",
+        "title": "Export Queries from Excel"
+      },
+      {
+        "command": "pq-extractor.import",
+        "title": "Import Queries to Excel"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorFocus",
+          "command": "pq-extractor.helloWorld",
+          "group": "myGroup@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceLangId == xlsx",
+          "command": "pq-extractor.export",
+          "group": "navigation"
+        },
+        {
+          "when": "resourceLangId == xlsx",
+          "command": "pq-extractor.import",
+          "group": "navigation"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "id": "xlsx",
+        "extensions": [
+          ".xlsx",
+          ".xlsm"
+        ]
       }
     ]
   },
   "scripts": {
+    "build:wsh": "rollup -c",
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
     "watch": "webpack --watch",
@@ -31,18 +70,34 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.8",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@types/activex-excel": "^14.0.10",
+    "@types/activex-scripting": "^1.0.12",
+    "@types/json3": "^3.3.4",
     "@types/mocha": "^10.0.2",
     "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@types/windows-script-host": "^5.8.6",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
+    "@vscode/test-electron": "^2.3.4",
     "eslint": "^8.50.0",
     "glob": "^10.3.3",
     "mocha": "^10.2.0",
-    "typescript": "^5.2.2",
+    "rollup": "^4.9.5",
+    "rollup-plugin-encoding": "^0.1.2",
+    "rollup-plugin-typescript2": "^0.36.0",
     "ts-loader": "^9.4.4",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "@vscode/test-electron": "^2.3.4"
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "core-js": "^3.35.0",
+    "json3": "^3.3.3"
   }
 }

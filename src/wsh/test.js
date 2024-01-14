@@ -1,0 +1,6 @@
+WScript.Echo('Echo')
+WScript.StdOut.WriteLine('StdOut1')
+WScript.StdErr.WriteLine('StdErr1')
+WScript.StdOut.WriteLine('StdOut2')
+WScript.StdErr.WriteLine('StdErr2')
+WScript.Quit(5)
